@@ -1,0 +1,81 @@
+package com.example.littlelemon
+
+import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.littlelemon.ui.theme.LittleLemonColor
+import com.example.littlelemon.ui.theme.body1
+
+@Composable
+fun UpperPanel() {
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier
+            .padding(top = 16.dp, bottom = 16.dp)
+            .background(LittleLemonColor.green)
+    ) {
+        Column(modifier = Modifier.padding(10.dp)){
+            Text(
+                text = stringResource(id = R.string.title),
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                color = LittleLemonColor.yellow
+            )
+            Text(
+                text = stringResource(id = R.string.location),
+                fontSize = 24.sp,
+                color = LittleLemonColor.cloud
+            )
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .padding(top = 20.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.description),
+                    style = body1,
+                    modifier = Modifier
+                        .padding(bottom = 28.dp, end = 20.dp)
+                        .fillMaxWidth(0.6f),
+                    color = LittleLemonColor.cloud
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.upperpanelimage),
+                    contentDescription = "Upper Panel Image",
+                    modifier = Modifier.clip(RoundedCornerShape(10.dp))
+                )
+            }
+            Button(
+                onClick = { Toast.makeText(context, "Thank You", Toast.LENGTH_SHORT).show() }
+            ) {
+                Text(
+                    text = stringResource(id = R.string.order_button_text)
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun UpperPanelPreview() {
+    UpperPanel()
+}
